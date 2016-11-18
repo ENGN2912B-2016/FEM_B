@@ -1,0 +1,7 @@
+module load vtk
+module load mvapich2
+module load moose/20161117
+module load paraview
+module load qt
+module load gcc
+module load git
