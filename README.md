@@ -1,6 +1,6 @@
-Stork
+FEM Group B
+
+Anna Lischke, Matthew Petersen
 =====
 
-"Fork Stork" to create a new MOOSE-based application.
-
-For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
+Project: 2D Combustion Modeling Application
