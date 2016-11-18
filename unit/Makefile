@@ -31,19 +31,19 @@ ADDITIONAL_LIBS 	:= -L$(CPPUNIT_DIR)/lib -lcppunit
 
 # dep apps
 APPLICATION_DIR    := $(CURRENT_DIR)/..
-APPLICATION_NAME   := stork
+APPLICATION_NAME   := fem_b
 include            $(FRAMEWORK_DIR)/app.mk
 
 APPLICATION_DIR    := $(CURRENT_DIR)
-APPLICATION_NAME   := stork-unit
+APPLICATION_NAME   := fem_b-unit
 BUILD_EXEC         := yes
 DEP_APPS    ?= $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
 include $(FRAMEWORK_DIR)/app.mk
 
-# Find all the STORK unit test source files and include their dependencies.
-stork-unit_srcfiles := $(shell find $(CURRENT_DIR) -name "*.C")
-stork-unit_deps := $(patsubst %.C, %.$(obj-suffix).d, $(stork-unit_srcfiles))
--include $(stork-unit_deps)
+# Find all the FEM_B unit test source files and include their dependencies.
+fem_b-unit_srcfiles := $(shell find $(CURRENT_DIR) -name "*.C")
+fem_b-unit_deps := $(patsubst %.C, %.$(obj-suffix).d, $(fem_b-unit_srcfiles))
+-include $(fem_b-unit_deps)
 
 ###############################################################################
 # Additional special case targets should be added here
