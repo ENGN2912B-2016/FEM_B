@@ -1,4 +1,4 @@
-FEM Group B
+ FEM Group B
 =====
 Anna Lischke, Matthew Petersen
 ------------------------------
@@ -31,13 +31,13 @@ fem_b/
 ├── our_example-opt // executable
 ├── README.md
 └─── src
-    ├── base
-    │   └─── FemBApp.C // app skeleton
-    ├── kernels
-    │   ├── ExampleConvection.C // convection kernel
-    │   ├── ExampleDiffusion.C // diffusion kernel
-    │   └── ExampleTimeDerivative.C // transient kernel
-    └── main.C // MOOSE application runner
+     ├── base
+     │   └─── FemBApp.C // app skeleton
+     ├── kernels
+     │   ├── ExampleConvection.C // convection kernel
+     │   ├── ExampleDiffusion.C // diffusion kernel
+     │   └── ExampleTimeDerivative.C // transient kernel
+     └── main.C // MOOSE application runner
 
 ```
 
