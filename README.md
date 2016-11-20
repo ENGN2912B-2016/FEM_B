@@ -3,7 +3,11 @@ FEM Group B
 Anna Lischke, Matthew Petersen
 ------------------------------
 
-Project: 2D Combustion Modeling Application
+### Project: 2D Combustion Modeling Application
+
+## Summary
+
+This application will consist of a GUI (written in Qt), a solver (made using the [MOOSE framework](http://www.mooseframework.com)), and a visualization capacity (via VTK). The application will allow the user to model 2D laminar flames, using  models based off of work done by [Michaelis and Rogg.](http://dx.doi.org/10.1016/j.jcp.2003.10.033). The user will be able to easily take advantage of the world-class FEM capabilities of MOOSE, and be able to quickly and easily generate input files without having to learn MOOSE input syntax.
 
 To run this project, run `our_example-opt -i conv_diff.i`
 
@@ -39,4 +43,4 @@ fem_b
       	      	| ExampleTimeDerivative.h // Transient kernel header
 ```
 
-In this repository, all of the files needed to build and run the application are included, with the exception of MOOSE. For MOOSE, go to [its website.]{http://www.mooseframework.com}
+In this repository, all of the files needed to build and run the application are included, with the exception of MOOSE. For MOOSE, go to [its website.](http://www.mooseframework.com)
