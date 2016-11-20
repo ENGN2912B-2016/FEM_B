@@ -39,5 +39,4 @@ fem_b
       	      	| ExampleTimeDerivative.h // Transient kernel header
 ```
 
-
-In this repository, all of the files needed to make and run the application are incl
+In this repository, all of the files needed to build and run the application are included, with the exception of MOOSE. For MOOSE, go to [its website.]{http://www.mooseframework.com}
