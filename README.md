@@ -15,28 +15,28 @@ The file structure for the essential files is as follows:
 fem_b
 |
 |------src
-|	|------base
-|	|	|
-|	|	| FemBApp.C // Application skeleton source
-|	|
-|	|------kernels
-|	|	|
-|	|	| ExampleConvection.C // Convection kernel
-|	|	| ExampleDiffusion.C // Diffusion kernel
-|	|	| ExampleTimeDerivative.C // Transient kernel
-|	|
-|	| main.C // MOOSE application runner
+|      	|------base
+|      	|      	|
+|      	|      	| FemBApp.C // Application skeleton source
+|      	|      
+|      	|------kernels
+|      	|      	|
+|      	|      	| ExampleConvection.C // Convection kernel
+|      	|      	| ExampleDiffusion.C // Diffusion kernel
+|      	|      	| ExampleTimeDerivative.C // Transient kernel
+|      	|      
+|       | main.C // MOOSE application runner
 |
 |------include
-	|------base
-	|	|
-	|	| FemBApp.h // Application skeleton header
-	|
-	|------kernels
-		|
-		| ExampleConvection.h // Convection kernel header
-		| ExampleDiffusion.h // Diffusion kernel header
-		| ExampleTimeDerivative.h // Transient kernel header
+      	|------base
+      	|      	|
+      	|      	| FemBApp.h // Application skeleton header
+      	|      
+      	|------kernels
+      	      	|
+      	      	| ExampleConvection.h // Convection kernel header
+      	      	| ExampleDiffusion.h // Diffusion kernel header
+      	      	| ExampleTimeDerivative.h // Transient kernel header
 ```
 
 
