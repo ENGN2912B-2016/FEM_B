@@ -6,7 +6,6 @@
 *.a
 *-dbg
 *-oprof
-*.e
 *.nav
 *.log
 *.aux
