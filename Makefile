@@ -31,5 +31,10 @@ BUILD_EXEC         := yes
 DEP_APPS           := $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
 include            $(FRAMEWORK_DIR)/app.mk
 
+# Include dependency files for this example
+ex_srcfiles := $(shell find $(APPLICATION_DIR) -name "*.C")
+ex_deps     := $(patsubst %.C, %.$(obj-suffix).d, $(ex_srcfiles))
+-include $(ex_deps)
+
 ###############################################################################
 # Additional special case targets should be added here

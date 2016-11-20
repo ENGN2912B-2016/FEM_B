@@ -4,6 +4,10 @@
 #include "ModulesApp.h"
 #include "MooseSyntax.h"
 
+#include "ExampleDiffusion.h"
+#include "ExampleConvection.h"
+#include "ExampleTimeDerivative.h"
+
 template<>
 InputParameters validParams<FemBApp>()
 {
@@ -45,6 +49,9 @@ extern "C" void FemBApp__registerObjects(Factory & factory) { FemBApp::registerO
 void
 FemBApp::registerObjects(Factory & factory)
 {
+    registerKernel(ExampleConvection);
+    registerKernel(ExampleDiffusion);
+    registerKernel(ExampleTimeDerivative);
 }
 
 // External entry point for dynamic syntax association

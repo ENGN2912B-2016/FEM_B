@@ -12,28 +12,32 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#include "ExampleConvection.h"
+#include "ExampleTimeDerivative.h"
+
+#include "Material.h"
 
 template<>
-InputParameters validParams<ExampleConvection>()
+InputParameters validParams<ExampleTimeDerivative>()
 {
-	  InputParameters params = validParams<Kernel>();
-
-	    params.addRequiredCoupledVar("some_variable", "The gradient of this variable will be used as the velocity vector.");
-	      return params;
+  InputParameters params = validParams<TimeDerivative>();
+  params.addParam<Real>("time_coefficient", 1.0, "Time Coefficient");
+  return params;
 }
 
-ExampleConvection::ExampleConvection(const InputParameters & parameters) :
-	    Kernel(parameters),
-	        _some_variable(coupledGradient("some_variable"))
+ExampleTimeDerivative::ExampleTimeDerivative(const InputParameters & parameters) :
+    TimeDerivative(parameters),
+    // This kernel expects an input parameter named "time_coefficient"
+    _time_coefficient(getParam<Real>("time_coefficient"))
 {}
 
-Real ExampleConvection::computeQpResidual()
+Real
+ExampleTimeDerivative::computeQpResidual()
 {
-	  return _test[_i][_qp]*(_some_variable[_qp]*_grad_u[_qp]);
+  return _time_coefficient*TimeDerivative::computeQpResidual(); //_time_coefficient comes from input file
 }
 
-Real ExampleConvection::computeQpJacobian()
+Real
+ExampleTimeDerivative::computeQpJacobian()
 {
-	  return _test[_i][_qp]*(_some_variable[_qp]*_grad_phi[_j][_qp]);
+  return _time_coefficient*TimeDerivative::computeQpJacobian();
 }

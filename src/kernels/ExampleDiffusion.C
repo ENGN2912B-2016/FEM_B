@@ -12,31 +12,31 @@
 /*            See COPYRIGHT for full restrictions               */
 /****************************************************************/
 
-#ifndef EXAMPLECONVECTION_H
-#define EXAMPLECONVECTION_H
-
-#include "Kernel.h"
-
-class ExampleConvection;
+#include "ExampleDiffusion.h"
 
 template<>
-InputParameters validParams<ExampleConvection>();
-
-class ExampleConvection : public Kernel
+InputParameters validParams<ExampleDiffusion>()
 {
-	public:
+  InputParameters params = validParams<Diffusion>();
+  // Here we will look for a parameter from the input file
+  params.addParam<Real>("diffusivity", 1.0, "Diffusivity Coefficient");
+  return params;
+}
 
-		  ExampleConvection(const InputParameters & parameters);
+ExampleDiffusion::ExampleDiffusion(const InputParameters & parameters) :
+    Diffusion(parameters),
+    // Initialize our member variable based on a default or input file
+    _diffusivity(getParam<Real>("diffusivity"))
+{}
 
-	protected:
+Real
+ExampleDiffusion::computeQpResidual()
+{
+  return _diffusivity*Diffusion::computeQpResidual();
+}
 
-		    virtual Real computeQpResidual() override;
-
-		      virtual Real computeQpJacobian() override;
-
-	private:
-
-		        const VariableGradient & _some_variable;
-};
-
-#endif //EXAMPLECONVECTION_H
+Real
+ExampleDiffusion::computeQpJacobian()
+{
+  return _diffusivity*Diffusion::computeQpJacobian();
+}
