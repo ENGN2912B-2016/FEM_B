@@ -1,7 +1,7 @@
 #include "FemBApp.h"
 #include "Moose.h"
 #include "AppFactory.h"
-#include "ModulesApp.h"
+//#include "ModulesApp.h"
 #include "MooseSyntax.h"
 
 #include "ExampleDiffusion.h"
@@ -24,11 +24,11 @@ FemBApp::FemBApp(InputParameters parameters) :
     MooseApp(parameters)
 {
   Moose::registerObjects(_factory);
-  ModulesApp::registerObjects(_factory);
+//  ModulesApp::registerObjects(_factory);
   FemBApp::registerObjects(_factory);
 
   Moose::associateSyntax(_syntax, _action_factory);
-  ModulesApp::associateSyntax(_syntax, _action_factory);
+//  ModulesApp::associateSyntax(_syntax, _action_factory);
   FemBApp::associateSyntax(_syntax, _action_factory);
 }
 
