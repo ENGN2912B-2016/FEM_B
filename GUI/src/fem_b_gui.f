@@ -2,7 +2,16 @@
 version 1.0304
 header_name {.h}
 code_name {.cxx}
-decl {\#include <iostream>} {selected private local
+decl {\#include <iostream>} {private local
+}
+
+decl {\#include <assert.h>} {private local
+}
+
+decl {\#include <fstream>} {private local
+}
+
+decl {\#include <string>} {selected private local
 }
 
 Function {make_window()} {open
@@ -17,10 +26,20 @@ Function {make_window()} {open
     } {
       Fl_Round_Button iso_button {
         label Isothermal
-        xywh {510 120 25 25} down_box ROUND_DOWN_BOX align 4
+        callback {if (iso_button->value()) {
+adia_button->value(0);
+} else {
+adia_button->value(1);
+}}
+        xywh {510 120 25 25} down_box ROUND_DOWN_BOX align 4 when 1
       }
       Fl_Round_Button adia_button {
         label Adiabatic
+        callback {if (adia_button->value()) {
+iso_button->value(0);
+} else {
+iso_button->value(1);
+}}
         xywh {510 140 25 25} down_box ROUND_DOWN_BOX align 4
       }
       Fl_Input wall_temp {
@@ -102,108 +121,120 @@ Function {make_window()} {open
     }
     Fl_Button submit {
       label Submit
-      callback {char* Tw_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str; //Po_str
-char* RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str;
-char* input_str, mesh_str;
+      callback {std::string Tw_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str; //Po_str
+std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str;
+std::string input_str, mesh_str;
 bool adia_iso;
 
-if (wall_temp->value()) {
-strcpy(Tw_str, wall_temp->value());
+if (iso_button->value()) {
+adia_iso = false;
+} else if (adia_button->value()) {
+adia_iso = true;
 } else {
-strcpy(Tw_str,"300");
+adia_iso = false;
+}
+
+if (wall_temp->value()) {
+Tw_str = wall_temp->value();
+} else {
+Tw_str="300";
 }
 
 if (in_temp->value()) {
-strcpy(Ti_str, in_temp->value());
+Ti_str =  in_temp->value();
 } else {
-strcpy(Ti_str,"300");
+Ti_str = "300";
 }
 
 // if (out_p->value()) {
-// strcpy(Po_str, out_p->value());
+// Po_str =  out_p->value();
 // } else {
-// strcpy(Po_str,"300");
+// Po_str = "300";
 // }
 
 if (gas_tc->value()) {
-strcpy(TC_str, gas_tc->value());
+TC_str =  gas_tc->value();
 } else {
-strcpy(TC_str,"300");
+TC_str = "300";
 }
 
 if (gas_dens->value()) {
-strcpy(dens_str, gas_dens->value());
+dens_str =  gas_dens->value();
 } else {
-strcpy(dens_str,"300");
+dens_str = "300";
 }
 
 if (gas_sh->value()) {
-strcpy(SH_str, gas_sh->value());
+SH_str =  gas_sh->value();
 } else {
-strcpy(SH_str,"300");
+SH_str = "300";
 }
 
 if (gas_visc->value()) {
-strcpy(visc_str, gas_visc->value());
+visc_str =  gas_visc->value();
 } else {
-strcpy(visc_str,"300");
+visc_str = "300";
 }
 
 if (gas_mf->value()) {
-strcpy(MF_str, gas_mf->value());
+MF_str =  gas_mf->value();
 } else {
-strcpy(MF_str,"300");
+MF_str = "300";
 }
 
 if (rx_rate->value()) {
-strcpy(RX_str, rx_rate->value());
+RX_str =  rx_rate->value();
 } else {
-strcpy(RX_str,"300");
+RX_str = "300";
 }
 
 if (fuel_h->value()) {
-strcpy(Hfuel_str, fuel_h->value());
+Hfuel_str =  fuel_h->value();
 } else {
-strcpy(Hfuel_str,"300");
+Hfuel_str = "300";
 }
 
 if (x_elem->value()) {
-strcpy(El_x_str, x_elem->value());
+El_x_str =  x_elem->value();
 } else {
-strcpy(El_x_str,"300");
+El_x_str = "300";
 }
 
 if (y_elem->value()) {
-strcpy(El_y_str, y_elem->value());
+El_y_str =  y_elem->value();
 } else {
-strcpy(El_x_str,"300");
+El_x_str = "300";
 }
 
 if (duration->value()) {
-strcpy(dur_str, duration->value());
+dur_str =  duration->value();
 } else {
-strcpy(dur_str,"300");
+dur_str = "300";
 }
 
 if (timestep->value()) {
-strcpy(timestep_str, fuel_h->value());
+timestep_str =  fuel_h->value();
 } else {
-strcpy(timestep_str,"300");
+timestep_str = "300";
 }
 
 if (in_file->value() > 0) {
-strcpy(input_str,in_file->text(in_file->value()));
+input_str = in_file->text(in_file->value());
+std::cout << input_str << std::endl;
 } else {
-strcpy(input_str,new_file->value());
+input_str = new_file->value();
 }
 
 if (mesh_file->value() > 0) {
-strcpy(mesh_str,mesh_file->text(mesh_file->value()));
+mesh_str = mesh_file->text(mesh_file->value());
+std::cout << mesh_str << std::endl;
 } else {
-strcpy(mesh_str,"default_mesh.e");
+mesh_str = "default_mesh.e";
 }
 
 std::ofstream outfile(input_str,std::ios::out);
+
+std::cout << "file opened" << std::endl;
 
 assert(outfile.is_open());
 
@@ -213,10 +244,14 @@ outfile << "[//]" << timestep_str << std::endl;}
     Fl_File_Browser in_file {
       label {Input File Location}
       xywh {26 105 310 235}
+      code0 {in_file->load(".");}
+      code1 {in_file->type(FL_HOLD_BROWSER);}
     }
     Fl_File_Browser mesh_file {
       label {Mesh File Location}
       xywh {26 424 310 235}
+      code0 {mesh_file->load(".");}
+      code1 {mesh_file->type(FL_HOLD_BROWSER);}
     }
     Fl_Input new_file {
       label {New Input File Name}

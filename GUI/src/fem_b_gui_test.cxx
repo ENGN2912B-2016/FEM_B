@@ -4,7 +4,7 @@
 #include <iostream>
 #include <assert.h>
 #include <fstream>
-#include <string>
+#include <string.h>
 
 Fl_Double_Window *main_window=(Fl_Double_Window *)0;
 
@@ -69,9 +69,9 @@ Fl_Input *timestep=(Fl_Input *)0;
 Fl_Button *submit=(Fl_Button *)0;
 
 static void cb_submit(Fl_Button*, void*) {
-  std::string Tw_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str; //Po_str
-std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str;
-std::string input_str, mesh_str;
+  char Tw_str, Ti_str, TC_str, dens_str, *SH_str, *visc_str, *MF_str; //Po_str
+char *RX_str, *Hfuel_str, *El_x_str, *El_y_str, *dur_str, *timestep_str;
+char *input_str, *mesh_str;
 bool adia_iso;
 
 if (iso_button->value()) {
@@ -83,101 +83,101 @@ adia_iso = false;
 }
 
 if (wall_temp->value()) {
-Tw_str = wall_temp->value();
+Tw_str, wall_temp->value());
 } else {
-Tw_str="300";
+strcpy(Tw_str,"300");
 }
 
 if (in_temp->value()) {
-Ti_str =  in_temp->value();
+strcpy(Ti_str, in_temp->value());
 } else {
-Ti_str = "300";
+strcpy(Ti_str,"300");
 }
 
 // if (out_p->value()) {
-// Po_str =  out_p->value();
+// strcpy(Po_str, out_p->value());
 // } else {
-// Po_str = "300";
+// strcpy(Po_str,"300");
 // }
 
 if (gas_tc->value()) {
-TC_str =  gas_tc->value();
+strcpy(TC_str, gas_tc->value());
 } else {
-TC_str = "300";
+strcpy(TC_str,"300");
 }
 
 if (gas_dens->value()) {
-dens_str =  gas_dens->value();
+strcpy(dens_str, gas_dens->value());
 } else {
-dens_str = "300";
+strcpy(dens_str,"300");
 }
 
 if (gas_sh->value()) {
-SH_str =  gas_sh->value();
+strcpy(SH_str, gas_sh->value());
 } else {
-SH_str = "300";
+strcpy(SH_str,"300");
 }
 
 if (gas_visc->value()) {
-visc_str =  gas_visc->value();
+strcpy(visc_str, gas_visc->value());
 } else {
-visc_str = "300";
+strcpy(visc_str,"300");
 }
 
 if (gas_mf->value()) {
-MF_str =  gas_mf->value();
+strcpy(MF_str, gas_mf->value());
 } else {
-MF_str = "300";
+strcpy(MF_str,"300");
 }
 
 if (rx_rate->value()) {
-RX_str =  rx_rate->value();
+strcpy(RX_str, rx_rate->value());
 } else {
-RX_str = "300";
+strcpy(RX_str,"300");
 }
 
 if (fuel_h->value()) {
-Hfuel_str =  fuel_h->value();
+strcpy(Hfuel_str, fuel_h->value());
 } else {
-Hfuel_str = "300";
+strcpy(Hfuel_str,"300");
 }
 
 if (x_elem->value()) {
-El_x_str =  x_elem->value();
+strcpy(El_x_str, x_elem->value());
 } else {
-El_x_str = "300";
+strcpy(El_x_str,"300");
 }
 
 if (y_elem->value()) {
-El_y_str =  y_elem->value();
+strcpy(El_y_str, y_elem->value());
 } else {
-El_x_str = "300";
+strcpy(El_x_str,"300");
 }
 
 if (duration->value()) {
-dur_str =  duration->value();
+strcpy(dur_str, duration->value());
 } else {
-dur_str = "300";
+strcpy(dur_str,"300");
 }
 
 if (timestep->value()) {
-timestep_str =  fuel_h->value();
+strcpy(timestep_str, fuel_h->value());
 } else {
-timestep_str = "300";
+strcpy(timestep_str,"300");
 }
 
 if (in_file->value() > 0) {
-input_str = in_file->text(in_file->value());
+strcpy(input_str,in_file->text(in_file->value()));
 std::cout << input_str << std::endl;
 } else {
-input_str = new_file->value();
+strcpy(input_str,new_file->value());
 }
 
 if (mesh_file->value() > 0) {
-mesh_str = mesh_file->text(mesh_file->value());
+strcpy(mesh_str,mesh_file->text(mesh_file->value()));
 std::cout << mesh_str << std::endl;
 } else {
-mesh_str = "default_mesh.e";
+strcpy(mesh_str,"default_mesh.e");
 }
 
 std::ofstream outfile(input_str,std::ios::out);
