@@ -1,14 +1,11 @@
-#include <FL/Fl.H>
-#include <FL/Fl_Window.H>
-#include <FL/Fl_Positioner.H>
-#include <FL/Fl_Input.H>
+#include "fem_b_gui.h"
+#include "fem_b_gui.cxx"
 
 int main(int argc, char **argv) {
 
-	Fl_Window *window = new Fl_Window(500,500);
-	Fl_Input *file   = new Fl_Input(350,50,80,20,"File");
-	window->end();
+	fem_b_gui_h::Fl_Double_Window *window = make_window();
 	window->show();
+	return Fl::run();
 
 }
 
