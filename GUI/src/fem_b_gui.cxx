@@ -83,106 +83,104 @@ adia_iso = false;
 }
 
 if (wall_temp->value()) {
-Tw_str = wall_temp->value();
+Tw_str = std::string(wall_temp->value());
 } else {
 Tw_str="300";
 }
 
 if (in_temp->value()) {
-Ti_str =  in_temp->value();
+Ti_str = std::string( in_temp->value());
 } else {
-Ti_str = "300";
+Ti_str = std::string("300");
 }
 
 // if (out_p->value()) {
-// Po_str =  out_p->value();
+// Po_str = std::string( out_p->value());
 // } else {
-// Po_str = "300";
+// Po_str = std::string("300");
 // }
 
 if (gas_tc->value()) {
-TC_str =  gas_tc->value();
+TC_str = std::string( gas_tc->value());
 } else {
-TC_str = "300";
+TC_str = std::string("300");
 }
 
 if (gas_dens->value()) {
-dens_str =  gas_dens->value();
+dens_str = std::string( gas_dens->value());
 } else {
-dens_str = "300";
+dens_str = std::string("300");
 }
 
 if (gas_sh->value()) {
-SH_str =  gas_sh->value();
+SH_str = std::string( gas_sh->value());
 } else {
-SH_str = "300";
+SH_str = std::string("300");
 }
 
 if (gas_visc->value()) {
-visc_str =  gas_visc->value();
+visc_str = std::string( gas_visc->value());
 } else {
-visc_str = "300";
+visc_str = std::string("300");
 }
 
 if (gas_mf->value()) {
-MF_str =  gas_mf->value();
+MF_str = std::string( gas_mf->value());
 } else {
-MF_str = "300";
+MF_str = std::string("300");
 }
 
 if (rx_rate->value()) {
-RX_str =  rx_rate->value();
+RX_str = std::string( rx_rate->value());
 } else {
-RX_str = "300";
+RX_str = std::string("300");
 }
 
 if (fuel_h->value()) {
-Hfuel_str =  fuel_h->value();
+Hfuel_str = std::string( fuel_h->value());
 } else {
-Hfuel_str = "300";
+Hfuel_str = std::string("300");
 }
 
 if (x_elem->value()) {
-El_x_str =  x_elem->value();
+El_x_str = std::string( x_elem->value());
 } else {
-El_x_str = "300";
+El_x_str = std::string("300");
 }
 
 if (y_elem->value()) {
-El_y_str =  y_elem->value();
+El_y_str = std::string( y_elem->value());
 } else {
-El_x_str = "300";
+El_x_str = std::string("300");
 }
 
 if (duration->value()) {
-dur_str =  duration->value();
+dur_str = std::string( duration->value());
 } else {
-dur_str = "300";
+dur_str = std::string("300");
 }
 
 if (timestep->value()) {
-timestep_str =  fuel_h->value();
+timestep_str = std::string(timestep->value());
 } else {
-timestep_str = "300";
+timestep_str = std::string("300");
 }
 
 if (in_file->value() > 0) {
-input_str = in_file->text(in_file->value());
-std::cout << input_str << std::endl;
+input_str = std::string(in_file->text(in_file->value()));
+} else if (new_file->value()) {
+input_str = std::string(new_file->value());
 } else {
-input_str = new_file->value();
+input_str = std::string("default.i");
 }
 
 if (mesh_file->value() > 0) {
-mesh_str = mesh_file->text(mesh_file->value());
-std::cout << mesh_str << std::endl;
+mesh_str = std::string(mesh_file->text(mesh_file->value()));
 } else {
-mesh_str = "default_mesh.e";
+mesh_str = std::string("default_mesh.e");
 }
 
 std::ofstream outfile(input_str,std::ios::out);
-
-std::cout << "file opened" << std::endl;
 
 assert(outfile.is_open());
 
