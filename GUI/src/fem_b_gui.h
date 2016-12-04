@@ -3,7 +3,8 @@
 #ifndef fem_b_gui_h
 #define fem_b_gui_h
 #include <FL/Fl.H>
-std::ostream& inblock(std::string name, int size, std::string name[], std::string val[]);
+#include <iostream>
+std::ostream& inblock(std::string name, int size, std::string ent[], std::string val[],std::ostream& out);
 #include <FL/Fl_Double_Window.H>
 extern Fl_Double_Window *main_window;
 #include <FL/Fl_Group.H>
@@ -27,6 +28,8 @@ extern Fl_Input *fuel_h;
 extern Fl_Group *mesh_set;
 extern Fl_Input *x_elem;
 extern Fl_Input *y_elem;
+extern Fl_Input *xmax;
+extern Fl_Input *ymax;
 extern Fl_Group *time_set;
 extern Fl_Input *duration;
 extern Fl_Input *timestep;
