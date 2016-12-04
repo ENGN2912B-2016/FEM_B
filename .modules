@@ -6,3 +6,4 @@ module load gcc
 module load git
 module load mvapich2
 module load fltk
+module load libxcb
