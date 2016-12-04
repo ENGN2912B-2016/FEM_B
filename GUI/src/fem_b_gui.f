@@ -14,6 +14,23 @@ decl {\#include <fstream>} {private local
 decl {\#include <string>} {private local
 }
 
+Function {inblock(std::string name, int size, std::string name[], std::string val[])} {
+  comment {Function to print out input sub-block
+} open return_type {std::ostream&}
+} {
+  code {std::ostream out;
+
+out << "[./" << name << "]\\n";
+if (size > 0) {
+for (int ii=0,ii<size, ++ii) {
+	out << name[ii] << " = " << val[ii] << "\\n";
+}
+}
+
+out << "[../]\\n";} {selected
+  }
+}
+
 Function {make_window()} {open
 } {
   Fl_Window main_window {
@@ -236,7 +253,7 @@ std::ofstream outfile(input_str,std::ios::out);
 
 assert(outfile.is_open());
 
-outfile << "[//]" << timestep_str << std::endl;} selected
+outfile << "[//]" << timestep_str << std::endl;}
       xywh {527 708 100 25}
     }
     Fl_File_Browser in_file {

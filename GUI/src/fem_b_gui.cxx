@@ -6,6 +6,22 @@
 #include <fstream>
 #include <string>
 
+/**
+ Function to print out input sub-block
+*/
+std::ostream& inblock(std::string name, int size, std::string name[], std::string val[]) {
+  std::ostream out;
+  
+  out << "[./" << name << "]\n";
+  if (size > 0) {
+  for (int ii=0,ii<size, ++ii) {
+  	out << name[ii] << " = " << val[ii] << "\n";
+  }
+  }
+  
+  out << "[../]\n";
+}
+
 Fl_Double_Window *main_window=(Fl_Double_Window *)0;
 
 Fl_Group *bc_set=(Fl_Group *)0;

@@ -3,6 +3,7 @@
 #ifndef fem_b_gui_h
 #define fem_b_gui_h
 #include <FL/Fl.H>
+std::ostream& inblock(std::string name, int size, std::string name[], std::string val[]);
 #include <FL/Fl_Double_Window.H>
 extern Fl_Double_Window *main_window;
 #include <FL/Fl_Group.H>
