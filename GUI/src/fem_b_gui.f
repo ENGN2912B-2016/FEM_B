@@ -16,7 +16,7 @@ decl {\#include <string>} {private local
 
 Function {inblock(std::string name, int size, std::string ent[], std::string val[],std::ostream& out)} {
   comment {Function to print out input sub-block
-} open return_type {std::ostream&}
+} open selected return_type {std::ostream&}
 } {
   code {out << "[./" << name << "]\\n";
 if (size > 0) {
@@ -28,11 +28,11 @@ for (int ii=0;ii<size; ++ii) {
 out << "[../]\\n";} {}
 }
 
-Function {make_window()} {open selected
+Function {make_window()} {open
 } {
   Fl_Window main_window {
     label {Laminar Combustion Input File Generator} open
-    xywh {177 110 678 749} type Double visible
+    xywh {185 141 678 749} type Double visible
   } {
     Fl_Group bc_set {
       label {Boundary Conditions} open
@@ -78,6 +78,10 @@ iso_button_b->value(1);
         label {Wall Temperature (top)}
         xywh {510 45 130 25}
       }
+      Fl_Input wall_temp_b {
+        label {Wall Temperature (bottom)}
+        xywh {510 70 130 25}
+      }
       Fl_Input in_temp {
         label {Inlet Temperature}
         xywh {510 95 130 25}
@@ -85,10 +89,6 @@ iso_button_b->value(1);
       Fl_Input out_p {
         label {Outlet Pressure}
         xywh {510 120 130 25}
-      }
-      Fl_Input wall_temp_b {
-        label {Wall Temperature (bottom)}
-        xywh {510 70 130 25}
       }
     }
     Fl_Group gas_set {
@@ -135,19 +135,19 @@ iso_button_b->value(1);
     } {
       Fl_Input x_elem {
         label {Elements (X)}
-        xywh {510 542 130 25}
+        xywh {510 535 130 25}
       }
       Fl_Input y_elem {
         label {Elements (Y)}
-        xywh {510 567 130 25}
+        xywh {510 560 130 25}
       }
       Fl_Input xmax {
         label {X Max}
-        xywh {510 592 130 25}
+        xywh {510 585 130 25}
       }
       Fl_Input ymax {
         label {Y Max}
-        xywh {510 617 130 25}
+        xywh {510 610 130 25}
       }
     }
     Fl_Group time_set {
@@ -156,11 +156,11 @@ iso_button_b->value(1);
     } {
       Fl_Input duration {
         label {Number of Steps}
-        xywh {510 682 130 25}
+        xywh {510 666 130 25}
       }
       Fl_Input timestep {
         label Timestep
-        xywh {510 707 130 25}
+        xywh {510 691 130 25}
       }
     }
     Fl_Button submit {

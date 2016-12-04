@@ -65,11 +65,11 @@ iso_button_b->value(1);
 
 Fl_Input *wall_temp_t=(Fl_Input *)0;
 
+Fl_Input *wall_temp_b=(Fl_Input *)0;
+
 Fl_Input *in_temp=(Fl_Input *)0;
 
 Fl_Input *out_p=(Fl_Input *)0;
-
-Fl_Input *wall_temp_b=(Fl_Input *)0;
 
 Fl_Group *gas_set=(Fl_Group *)0;
 
@@ -368,12 +368,12 @@ Fl_Double_Window* make_window() {
       } // Fl_Round_Button* adia_button_b
       { wall_temp_t = new Fl_Input(510, 45, 130, 25, "Wall Temperature (top)");
       } // Fl_Input* wall_temp_t
+      { wall_temp_b = new Fl_Input(510, 70, 130, 25, "Wall Temperature (bottom)");
+      } // Fl_Input* wall_temp_b
       { in_temp = new Fl_Input(510, 95, 130, 25, "Inlet Temperature");
       } // Fl_Input* in_temp
       { out_p = new Fl_Input(510, 120, 130, 25, "Outlet Pressure");
       } // Fl_Input* out_p
-      { wall_temp_b = new Fl_Input(510, 70, 130, 25, "Wall Temperature (bottom)");
-      } // Fl_Input* wall_temp_b
       bc_set->end();
     } // Fl_Group* bc_set
     { gas_set = new Fl_Group(185, 257, 475, 473, "Gas Settings");
