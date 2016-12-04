@@ -28,138 +28,174 @@ for (int ii=0;ii<size; ++ii) {
 out << "[../]\\n";} {}
 }
 
-Function {make_window()} {open
+Function {make_window()} {open selected
 } {
   Fl_Window main_window {
     label {Laminar Combustion Input File Generator} open
-    xywh {1144 348 678 749} type Double visible
+    xywh {177 110 678 749} type Double visible
   } {
     Fl_Group bc_set {
       label {Boundary Conditions} open
       xywh {190 30 475 475}
     } {
-      Fl_Round_Button iso_button {
-        label Isothermal
-        callback {if (iso_button->value()) {
-adia_button->value(0);
+      Fl_Round_Button iso_button_t {
+        label {Isothermal (top}
+        callback {if (iso_button_t->value()) {
+adia_button_t->value(0);
 } else {
-adia_button->value(1);
+adia_button_t->value(1);
 }}
-        xywh {510 120 25 25} down_box ROUND_DOWN_BOX align 4 when 1
+        xywh {510 145 25 25} down_box ROUND_DOWN_BOX align 4 when 1
       }
-      Fl_Round_Button adia_button {
-        label Adiabatic
-        callback {if (adia_button->value()) {
-iso_button->value(0);
+      Fl_Round_Button adia_button_t {
+        label {Adiabatic (top)}
+        callback {if (adia_button_t->value()) {
+iso_button_t->value(0);
 } else {
-iso_button->value(1);
+iso_button_t->value(1);
 }}
-        xywh {510 140 25 25} down_box ROUND_DOWN_BOX align 4
+        xywh {510 164 25 25} down_box ROUND_DOWN_BOX align 4
       }
-      Fl_Input wall_temp {
-        label {Wall Temperature}
+      Fl_Round_Button iso_button_b {
+        label {Isothermal (Bottom)}
+        callback {if (iso_button_b->value()) {
+adia_button_b->value(0);
+} else {
+adia_button_b->value(1);
+}}
+        xywh {510 182 25 25} down_box ROUND_DOWN_BOX align 4 when 1
+      }
+      Fl_Round_Button adia_button_b {
+        label {Adiabatic (bottom)}
+        callback {if (adia_button_b->value()) {
+iso_button_b->value(0);
+} else {
+iso_button_b->value(1);
+}}
+        xywh {510 199 25 25} down_box ROUND_DOWN_BOX align 4
+      }
+      Fl_Input wall_temp_t {
+        label {Wall Temperature (top)}
         xywh {510 45 130 25}
       }
       Fl_Input in_temp {
         label {Inlet Temperature}
-        xywh {510 70 130 25}
+        xywh {510 95 130 25}
       }
       Fl_Input out_p {
         label {Outlet Pressure}
-        xywh {510 95 130 25}
+        xywh {510 120 130 25}
+      }
+      Fl_Input wall_temp_b {
+        label {Wall Temperature (bottom)}
+        xywh {510 70 130 25}
       }
     }
     Fl_Group gas_set {
       label {Gas Settings} open
-      xywh {185 186 475 473}
+      xywh {185 257 475 473}
     } {
       Fl_Input gas_tc {
         label {Thermal Conductivity}
-        xywh {510 211 130 25}
+        xywh {510 266 130 25}
       }
       Fl_Input gas_dens {
         label Density
-        xywh {510 235 130 25}
+        xywh {510 290 130 25}
       }
       Fl_Input gas_sh {
         label {Specific Heat}
-        xywh {510 260 130 25}
+        xywh {510 315 130 25}
       }
       Fl_Input gas_visc {
         label Viscosity
-        xywh {510 285 130 25}
+        xywh {510 340 130 25}
       }
       Fl_Input gas_mf {
         label {Percent Fuel}
-        xywh {510 310 130 25}
+        xywh {510 365 130 25}
       }
     }
     Fl_Group chem_set {
       label {Chemistry Settings} open
-      xywh {185 363 475 477}
+      xywh {185 433 475 477}
     } {
       Fl_Input rx_rate {
         label {Reaction Rate}
-        xywh {510 393 130 25}
+        xywh {510 442 130 25}
       }
       Fl_Input fuel_h {
         label {Enthalpy of Fuel}
-        xywh {510 415 130 25}
+        xywh {510 464 130 25}
       }
     }
     Fl_Group mesh_set {
       label {Mesh Settings} open
-      xywh {185 475 475 475}
+      xywh {185 527 475 475}
     } {
       Fl_Input x_elem {
         label {Elements (X)}
-        xywh {510 490 130 25}
+        xywh {510 542 130 25}
       }
       Fl_Input y_elem {
         label {Elements (Y)}
-        xywh {510 515 130 25}
+        xywh {510 567 130 25}
       }
       Fl_Input xmax {
         label {X Max}
-        xywh {510 540 130 25}
+        xywh {510 592 130 25}
       }
       Fl_Input ymax {
         label {Y Max}
-        xywh {510 565 130 25}
+        xywh {510 617 130 25}
       }
     }
     Fl_Group time_set {
       label {Time Settings} open
-      xywh {185 605 475 675}
+      xywh {185 657 475 675}
     } {
       Fl_Input duration {
         label {Number of Steps}
-        xywh {510 630 130 25}
+        xywh {510 682 130 25}
       }
       Fl_Input timestep {
         label Timestep
-        xywh {510 655 130 25}
+        xywh {510 707 130 25}
       }
     }
     Fl_Button submit {
       label Submit
-      callback {std::string Tw_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str; //Po_str
+      callback {std::string Twt_str, Twb_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str; //Po_str
 std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str, xmax_str, ymax_str;
 std::string input_str, mesh_str;
-bool adia_iso;
+bool adia_iso_t, adia_iso_b;
 
-if (iso_button->value()) {
-adia_iso = false;
-} else if (adia_button->value()) {
-adia_iso = true;
+if (iso_button_t->value()) {
+adia_iso_t = false;
+} else if (adia_button_t->value()) {
+adia_iso_t = true;
 } else {
-adia_iso = false;
+adia_iso_t = false;
 }
 
-if (wall_temp->value()) {
-Tw_str = std::string(wall_temp->value());
+if (iso_button_b->value()) {
+adia_iso_b = false;
+} else if (adia_button_b->value()) {
+adia_iso_b = true;
 } else {
-Tw_str="300";
+adia_iso_b = false;
+}
+
+if (wall_temp_t->value()) {
+Twt_str = std::string(wall_temp_t->value());
+} else {
+Twt_str="300";
+}
+
+if (wall_temp_b->value()) {
+Twb_str = std::string(wall_temp_b->value());
+} else {
+Twb_str="300";
 }
 
 if (in_temp->value()) {
@@ -300,24 +336,39 @@ outfile << "[./HeatTdot]\\ntype = HeatConductionTimeDerivative\\nvariable = temp
 outfile << "[BCs]\\n";
 
 std::string dirnames[4] = {std::string("type"),std::string("variable"),std::string("boundary"),std::string("value")};
-std::string dirtop[4] = {std::string("DirichletBC"),std::string("temp"),std::string("top"),Tw_str};
+std::string dirtop[4] = {std::string("DirichletBC"),std::string("temp"),std::string("top"),Twt_str};
 std::string dirleft[4] = {std::string("DirichletBC"),std::string("temp"),std::string("left"),Ti_str};
-std::string dirbot[4] = {std::string("DirichletBC"),std::string("temp"),std::string("bottom"),Tw_str};
+std::string dirbot[4] = {std::string("DirichletBC"),std::string("temp"),std::string("bottom"),Twb_str};
+
 
 std::string neunames[4] = {std::string("type"),std::string("variable"),std::string("boundary")};
-std::string neutop[4] = {std::string("NeumannBC"),std::string("temp"),std::string("top"),Tw_str};
-std::string neuleft[4] = {std::string("NeumannBC"),std::string("temp"),std::string("left"),Ti_str};
-std::string neubot[4] = {std::string("NeumannBC"),std::string("temp"),std::string("bottom"),Tw_str};
+std::string neutop[4] = {std::string("NeumannBC"),std::string("temp"),std::string("top")};
+std::string neubot[4] = {std::string("NeumannBC"),std::string("temp"),std::string("bottom")};
+std::string neurig[4] = {std::string("NeumannBC"),std::string("temp"),std::string("right")};
 
-if (adia_iso) {
-inblock(std::string("left"),4,neunames,neuleft,outfile);
-inblock(std::string("top"),4,neunames,neutop,outfile);
-inblock(std::string("bottom"),4,neunames,neubot,outfile);
-} else {
+
+if (adia_iso_b && adia_iso_t) {
+inblock(std::string("left"),4,dirnames,dirleft,outfile);
+inblock(std::string("top"),3,neunames,neutop,outfile);
+inblock(std::string("bottom"),3,neunames,neubot,outfile);
+inblock(std::string("right"),3,neunames,neurig,outfile);
+} else if (adia_iso_b && !adia_iso_t) {
+inblock(std::string("left"),4,dirnames,dirleft,outfile);
+inblock(std::string("top"),4,dirnames,dirtop,outfile);
+inblock(std::string("bottom"),3,neunames,neubot,outfile);
+inblock(std::string("right"),3,neunames,neurig,outfile);
+} else if (!adia_iso_b && adia_iso_t) {
+inblock(std::string("left"),4,dirnames,dirleft,outfile);
+inblock(std::string("top"),3,neunames,neutop,outfile);
+inblock(std::string("bottom"),4,dirnames,dirbot,outfile);
+inblock(std::string("right"),3,neunames,neurig,outfile);
+} else if (!adia_iso_b && !adia_iso_t) {
 inblock(std::string("left"),4,dirnames,dirleft,outfile);
 inblock(std::string("top"),4,dirnames,dirtop,outfile);
 inblock(std::string("bottom"),4,dirnames,dirbot,outfile);
+inblock(std::string("right"),3,neunames,neurig,outfile);
 }
+
 
 outfile << "[]\\n\\n";
 
@@ -338,8 +389,8 @@ outfile << "num_steps = " << dur_str << "\\n";
 outfile << "dt = " << timestep_str << "\\n";
 outfile << "[]\\n\\n";
 
-outfile << "[Outputs]\\nexecute_on = 'timestep_end'\\nexodus = true\\n[]";} selected
-      xywh {527 708 100 25}
+outfile << "[Outputs]\\nexecute_on = 'timestep_end'\\nexodus = true\\n[]";}
+      xywh {230 705 100 25}
     }
     Fl_File_Browser in_file {
       label {Input File Location}

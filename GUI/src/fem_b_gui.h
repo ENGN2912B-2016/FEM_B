@@ -10,12 +10,15 @@ extern Fl_Double_Window *main_window;
 #include <FL/Fl_Group.H>
 extern Fl_Group *bc_set;
 #include <FL/Fl_Round_Button.H>
-extern Fl_Round_Button *iso_button;
-extern Fl_Round_Button *adia_button;
+extern Fl_Round_Button *iso_button_t;
+extern Fl_Round_Button *adia_button_t;
+extern Fl_Round_Button *iso_button_b;
+extern Fl_Round_Button *adia_button_b;
 #include <FL/Fl_Input.H>
-extern Fl_Input *wall_temp;
+extern Fl_Input *wall_temp_t;
 extern Fl_Input *in_temp;
 extern Fl_Input *out_p;
+extern Fl_Input *wall_temp_b;
 extern Fl_Group *gas_set;
 extern Fl_Input *gas_tc;
 extern Fl_Input *gas_dens;
