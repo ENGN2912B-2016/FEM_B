@@ -20,6 +20,27 @@ variable = temp
 []
 
 [BCs]
+[BCs]
+[./left]
+type = DirichletBC
+variable = temp
+boundary = left
+value = 10
+[../]
+[./top]
+type = DirichletBC
+variable = temp
+boundary = top
+value = 100
+[../]
+[./bottom]
+type = DirichletBC
+variable = temp
+boundary = bottom
+value = 100
+[../]
+[]
+
 [Materials]
 [./k]
 type = GenericConstantMaterial

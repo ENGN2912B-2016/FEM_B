@@ -242,9 +242,27 @@ outfile << "[./HeatTdot]\ntype = HeatConductionTimeDerivative\nvariable = temp\n
 
 outfile << "[BCs]\n";
 
-if (adia_iso) {
+std::string dirnames[4] = {std::string("type"),std::string("variable"),std::string("boundary"),std::string("value")};
+std::string dirtop[4] = {std::string("DirichletBC"),std::string("temp"),std::string("top"),Tw_str};
+std::string dirleft[4] = {std::string("DirichletBC"),std::string("temp"),std::string("left"),Ti_str};
+std::string dirbot[4] = {std::string("DirichletBC"),std::string("temp"),std::string("bottom"),Tw_str};
 
+std::string neunames[4] = {std::string("type"),std::string("variable"),std::string("boundary")};
+std::string neutop[4] = {std::string("NeumannBC"),std::string("temp"),std::string("top"),Tw_str};
+std::string neuleft[4] = {std::string("NeumannBC"),std::string("temp"),std::string("left"),Ti_str};
+std::string neubot[4] = {std::string("NeumannBC"),std::string("temp"),std::string("bottom"),Tw_str};
+
+if (adia_iso) {
+inblock(std::string("left"),4,neunames,neuleft,outfile);
+inblock(std::string("top"),4,neunames,neutop,outfile);
+inblock(std::string("bottom"),4,neunames,neubot,outfile);
+} else {
+inblock(std::string("left"),4,dirnames,dirleft,outfile);
+inblock(std::string("top"),4,dirnames,dirtop,outfile);
+inblock(std::string("bottom"),4,dirnames,dirbot,outfile);
 }
+
+outfile << "[]\n\n";
 
 outfile << "[Materials]\n";
 
