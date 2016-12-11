@@ -18,11 +18,11 @@ TEST := test_ignore
 include $(FRAMEWORK_DIR)/build.mk
 include $(FRAMEWORK_DIR)/moose.mk
 
-APPLICATION_NAME := fem_b
+APPLICATION_NAME := coupled
 
 # dep apps
 APPLICATION_DIR    := $(shell pwd)
-APPLICATION_NAME   := fem_b
+APPLICATION_NAME   := coupled
 BUILD_EXEC         := yes
 DEP_APPS           := $(shell $(FRAMEWORK_DIR)/scripts/find_dep_apps.py $(APPLICATION_NAME))
 include            $(FRAMEWORK_DIR)/app.mk

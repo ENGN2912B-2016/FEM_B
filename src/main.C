@@ -1,23 +1,27 @@
-#include "FemBApp.h"
+// Initializes and runs the TransportApp
+#include "TransportApp.h"
 #include "MooseInit.h"
 #include "Moose.h"
 #include "MooseApp.h"
 #include "AppFactory.h"
 
 // Create a performance log
-PerfLog Moose::perf_log("FemB");
+PerfLog Moose::perf_log("Transport");
 
 // Begin the main program.
 int main(int argc, char *argv[])
 {
-  // Initialize MPI, solvers and MOOSE
+  // Initialize MPI, solvers, and MOOSE
   MooseInit init(argc, argv);
 
-  // Register this application's MooseApp and any it depends on
-  FemBApp::registerApps();
+  // Register this application's MooseApp and any kernels
+  TransportApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
-  MooseApp * app = AppFactory::createApp("FemBApp", argc, argv);
+  MooseApp * app = AppFactory::createApp("TransportApp", argc, argv);
+
+  app->setCheckUnusedFlag(true);
+  app->setErrorOverridden();
 
   // Execute the application
   app->run();

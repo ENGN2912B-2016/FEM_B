@@ -1,8 +1,8 @@
-#Generate rectangular mesh with 40 triangular elements along each direction (2d)
+#Generate rectangular mesh with 20 triangular elements along each direction (2d)
 [Mesh]
 type = GeneratedMesh
 dim = 2
-nx = 20
+nx = 20.1
 ny = 20
 nz = 0
 
@@ -16,6 +16,20 @@ elem_type = TRI3
 [Variables]
 [./temp]
 [../]
+[./convdiff]
+order = FIRST
+family = LAGRANGE
+[../]
+[]
+
+[Functions]
+# A ParsedFunction allows us to supply analytic expressions
+# directly in the input file
+[./forcing_func]
+type = ParsedFunction
+value = 1
+[../]
+
 []
 
 # Use HeatConduction kernel (diffusion with thermal conductivity coefficient)
@@ -30,15 +44,59 @@ elem_type = TRI3
 type = HeatConductionTimeDerivative
 variable = temp
 [../]
+
+[./conv]
+  type = Convection
+  variable = convdiff
+  velocity = '1.0 0.0 0.0'
+[../]
+
+[./diff]
+  type = MyDiffusion
+  variable = convdiff
+[../]
+
+[./euler]
+  type = MyTimeDerivative
+  variable = convdiff
+  time_coefficient = 20.0
+[../]
+
+# This Kernel can take a function name
+[./forcing]
+type = UserForcingFunction
+variable = temp
+function = forcing_func
+[../]
 []
 
 # Set up inlet and isothermic boundary conditions (Dirichlet boundaries on left, top, and bottom of domain)
 [BCs]
+# Left side temperature boundary condition
 [./left]
 type = DirichletBC
 variable = temp
 boundary = left
 value = 300
+[../]
+# Left side BC for convdiff variable
+[./left_diffused]
+type = DirichletBC
+variable = convdiff
+boundary = 'left'
+value = 1
+[../]
+[./bottom_diffused]
+type = DirichletBC
+variable = convdiff
+boundary = 'bottom'
+value = 0
+[../]
+[./top_diffused]
+type = DirichletBC
+variable = convdiff
+boundary = 'top'
+value = 0
 [../]
 [./top]
  type = DirichletBC
@@ -78,9 +136,10 @@ value = 300
 
 # Time stepping and solver
 [Executioner]
-type = Transient   # Here we use the Transient Executioner
+# Here we use the Transient Executioner
+type = Transient
 solve_type = 'PJFNK'
-num_steps = 100
+num_steps = 300
 dt = 2
 []
 
