@@ -3,41 +3,63 @@
 Anna Lischke, Matthew Petersen
 ------------------------------
 
-### Project: 2D Combustion Modeling Application
+### Project: 2D Fluid-Thermal Transport Modeling Application
 
 ## Summary
 
-This application will consist of a GUI (written in Qt), a solver (made using the [MOOSE framework](http://www.mooseframework.com)), and a visualization capacity (via VTK). The application will allow the user to model 2D laminar flames, using  models based off of work done by [Michaelis and Rogg.](http://dx.doi.org/10.1016/j.jcp.2003.10.033). The user will be able to easily take advantage of the world-class FEM capabilities of MOOSE, and be able to quickly and easily generate input files without having to learn MOOSE input syntax. The output files are then able to viewed using [Paraview.](http://www.paraview.org)
+This application will consist of a GUI (written in FLTK), a solver (made using the [MOOSE framework](http://www.mooseframework.com)), and a visualization capacity (via VTK). The application will allow the user to model 2D fluid transport with thermal conductivity, using  simplified models based off of work done by [Michaelis and Rogg.](http://dx.doi.org/10.1016/j.jcp.2003.10.033). The user will be able to easily take advantage of the world-class FEM capabilities of MOOSE, and be able to quickly and easily generate input files without having to learn MOOSE input syntax. The output files are then able to viewed using [Paraview.](http://www.paraview.org)
 
-To run this project, run `./our_example-opt -i conv_diff.i`
+To run this project, run `./coupled-opt -i input_transport.i`
 
-Unfortunately, due to ongoing technical issues, we have not been able to build the application on the CCV itself; the executable was compiled on one of our own machines. The input file is `conv_diff.i` and the output file is `conv_diff_out.e`.
+Unfortunately, due to ongoing technical issues, we have not been able to build the application on the CCV itself; the executable was compiled on one of our own machines. The input file is `input_transport.i`.
 
 The file structure for the essential files is as follows:
 
 ```
-fem_b/
-├── conv_diff.i // input file
-├── conv_diff_out.e // output file
-├── include
-│   ├── base
-│   │   └── FemBApp.h // app skeleton header
-│   └── kernels
-│       ├── ExampleConvection.h // convection kernel header
-│       ├── ExampleDiffusion.h // diffusion kernel header
-│       └── ExampleTimeDerivative.h // transient kernel header
-├── LICENSE
+fem_b
+├── GUI
+│   ├── bin
+│   │   ├── default.i
+│   │   ├── fem_b_gui
+│   │   ├── test.e
+│   │   ├── test.i
+│   │   └── test2.i
+│   ├── inputtest.i
+│   ├── makefile
+│   └── src
+│       ├── fem_b_gui.cxx
+│       ├── fem_b_gui.f
+│       ├── fem_b_gui.h
+│       ├── fem_b_gui_test.cxx
+│       └── gui_main.cpp
 ├── Makefile
-├── our_example-opt // executable
 ├── README.md
-└─── src
-     ├── base
-     │   └─── FemBApp.C // app skeleton
-     ├── kernels
-     │   ├── ExampleConvection.C // convection kernel
-     │   ├── ExampleDiffusion.C // diffusion kernel
-     │   └── ExampleTimeDerivative.C // transient kernel
-     └── main.C // MOOSE application runner
+├── coupled-opt // executable
+├── include // header files
+│   ├── base
+│   │   └── TransportApp.h // skeleton header
+│   ├── functions
+│   │   └── MyFunction.h // source function kernel header
+│   └── kernels
+│       ├── Convection.h // fluid convection kernel header
+│       ├── HeatConduction.h // heat conduction kernel header
+│       ├── HeatConductionTimeDerivative.h // heat conduction transient kernel header
+│       ├── MyDiffusion.h // fluid diffusion kernel header
+│       └── MyTimeDerivative.h // fluid transient kernel header
+├── input_transport.i // input file
+├── lib // container file for peacock-generated cache
+└── src
+    ├── base
+    │   └── TransportApp.C // skeleton definitions (collects kernels)
+    ├── functions
+    │   └── MyFunction.C // source function kernel definition
+    ├── kernels
+    │   ├── Convection.C // fuild convection kernel
+    │   ├── HeatConduction.C // heat conduction kernel
+    │   ├── HeatConductionTimeDerivative.C // heat conduction transient kernel
+    │   ├── MyDiffusion.C // fluid diffusion kernel
+    │   └── MyTimeDerivative.C // fluid transient kernel
+    └── main.C // MOOSE application runner
 
 ```
 
