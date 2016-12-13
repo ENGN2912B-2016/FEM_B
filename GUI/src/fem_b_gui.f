@@ -34,8 +34,8 @@ out << "[../]\\n";} {}
 Function {make_window()} {open
 } {
   Fl_Window main_window {
-    label {Laminar Combustion Input File Generator} open
-    xywh {1089 296 678 749} type Double visible
+    label {Input File Generator} open
+    xywh {1097 327 678 749} type Double visible
   } {
     Fl_Group bc_set {
       label {Simulation Parameters} open
@@ -122,10 +122,6 @@ iso_button_b->value(1);
         label {Specific Heat}
         xywh {510 381 130 25}
       }
-      Fl_Input gas_visc {
-        label Viscosity
-        xywh {510 406 130 25}
-      }
     }
     Fl_Group mesh_set {
       label {Mesh Settings} open
@@ -163,7 +159,7 @@ iso_button_b->value(1);
     }
     Fl_Button submit {
       label Submit
-      callback {std::string Twt_str, Twb_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str, func_str, conv_x_str, conv_y_str, tcoef_str; //Po_str
+      callback {std::string Twt_str, Twb_str, Ti_str, TC_str, dens_str, SH_str, MF_str, func_str, conv_x_str, conv_y_str, tcoef_str; //Po_str
 std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str, xmax_str, ymax_str;
 std::string input_str, mesh_str;
 bool adia_iso_t, adia_iso_b;
@@ -252,12 +248,6 @@ if (funcin->value()) {
 func_str = std::string(funcin->value());
 } else {
 func_str = 1;
-}
-
-if (gas_visc->value()) {
-visc_str = std::string("'")+std::string( gas_visc->value())+std::string("'");
-} else {
-visc_str = std::string("300");
 }
 
 if (x_elem->value()) {

@@ -86,8 +86,6 @@ Fl_Input *gas_dens=(Fl_Input *)0;
 
 Fl_Input *gas_sh=(Fl_Input *)0;
 
-Fl_Input *gas_visc=(Fl_Input *)0;
-
 Fl_Group *mesh_set=(Fl_Group *)0;
 
 Fl_Input *x_elem=(Fl_Input *)0;
@@ -107,7 +105,7 @@ Fl_Input *timestep=(Fl_Input *)0;
 Fl_Button *submit=(Fl_Button *)0;
 
 static void cb_submit(Fl_Button*, void*) {
-  std::string Twt_str, Twb_str, Ti_str, TC_str, dens_str, SH_str, visc_str, MF_str, func_str, conv_x_str, conv_y_str, tcoef_str; //Po_str
+  std::string Twt_str, Twb_str, Ti_str, TC_str, dens_str, SH_str, MF_str, func_str, conv_x_str, conv_y_str, tcoef_str; //Po_str
 std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str, xmax_str, ymax_str;
 std::string input_str, mesh_str;
 bool adia_iso_t, adia_iso_b;
@@ -196,12 +194,6 @@ if (funcin->value()) {
 func_str = std::string(funcin->value());
 } else {
 func_str = 1;
-}
-
-if (gas_visc->value()) {
-visc_str = std::string("'")+std::string( gas_visc->value())+std::string("'");
-} else {
-visc_str = std::string("300");
 }
 
 if (x_elem->value()) {
@@ -373,7 +365,7 @@ Fl_File_Browser *mesh_file=(Fl_File_Browser *)0;
 Fl_Input *new_file=(Fl_Input *)0;
 
 Fl_Double_Window* make_window() {
-  { main_window = new Fl_Double_Window(678, 749, "Laminar Combustion Input File Generator");
+  { main_window = new Fl_Double_Window(678, 749, "Input File Generator");
     { bc_set = new Fl_Group(190, 30, 475, 475, "Simulation Parameters");
       { iso_button_t = new Fl_Round_Button(510, 119, 25, 25, "Isothermal (top");
         iso_button_t->down_box(FL_ROUND_DOWN_BOX);
@@ -420,8 +412,6 @@ Fl_Double_Window* make_window() {
       } // Fl_Input* gas_dens
       { gas_sh = new Fl_Input(510, 381, 130, 25, "Specific Heat");
       } // Fl_Input* gas_sh
-      { gas_visc = new Fl_Input(510, 406, 130, 25, "Viscosity");
-      } // Fl_Input* gas_visc
       gas_set->end();
     } // Fl_Group* gas_set
     { mesh_set = new Fl_Group(185, 460, 475, 475, "Mesh Settings");

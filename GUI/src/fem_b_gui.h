@@ -26,7 +26,6 @@ extern Fl_Group *gas_set;
 extern Fl_Input *gas_tc;
 extern Fl_Input *gas_dens;
 extern Fl_Input *gas_sh;
-extern Fl_Input *gas_visc;
 extern Fl_Group *mesh_set;
 extern Fl_Input *x_elem;
 extern Fl_Input *y_elem;
