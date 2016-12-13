@@ -11,8 +11,13 @@ This application will consist of a GUI (written in FLTK), a solver (made using t
 
 Unfortunately, due to ongoing technical issues, we have not been able to build the application on the CCV itself; the executable was compiled on one of our own machines. The input file is `input_transport.i`.
 
-To use the software application, the user must install the MOOSE framework and build it on their machine. Instructions can be found on the [MOOSE Getting Started page](http://mooseframework.com/getting-started/). Once that is done, 
+To use the software application, the user must install the MOOSE framework and build it on their machine. Instructions can be found on the [MOOSE Getting Started page](http://mooseframework.com/getting-started/). Once that is done, the user should build the application on their machine, by running the `make_app.sh` bash script.
 
+When that is done, the user can launch the GUI by running the "fem_b_gui" excutable in the application directory. This will bring up an interactive interface for generating program input files.
+
+### INSERT GUI SCREENSHOT HERE
+
+# GUI
 
 The file structure for the essential files is as follows:
 
