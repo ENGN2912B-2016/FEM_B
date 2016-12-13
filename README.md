@@ -31,7 +31,8 @@ If the user wants to use a different 2D mesh (e.g., graded mesh, quadrilateral m
 
 In the "Simulation Parameters" section, the user enters the desired wall temperature on the bottom and top boundaries of the mesh. These values are only applied if the "Isothermal" radio buttons are selected. The inlet temperature is specified on the left boundary, and is required to be a Dirichlet (isothermal) boundary condition. If the user selects adiabatic boundary conditions on the radio buttons, the simulation will have zero flux across that boundary.
 
-The forcing function corresponds to heat sinks and sources arising from chemical reactions. An example forcing function is "1+x" or "sin(pi*x)".
+The forcing function corresponds to heat sinks and sources arising from chemical reactions. An example forcing function is "1+x" or "sin(pi*x)". Any function defined in the cmath header is valid.
+
 The file structure for the essential files is as follows:
 
 ```
