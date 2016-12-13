@@ -23,6 +23,8 @@ When that is done, the user can launch the GUI by running the "fem_b_gui" excuta
 
 To run the application, the user uses the following syntax: `./coupled-opt -i MyInputFile.i`. The built-in MOOSE executioner will take the input file and follow its instructions to run the MOOSE solvers. The user can then use the MOOSE executioner (a GUI called Peacock) to view their results, or read the output data (stored in `peacock_run_tmp_out.e`) using an Exodus-format compatible data viewer, such as ParaView.
 
+In the GUI, the user may input the relevant parameters for their desired simulation. The simulation is designed to model convection-diffusion of gas in addition to heat conduction.
+
 The file structure for the essential files is as follows:
 
 ```
