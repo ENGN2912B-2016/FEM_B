@@ -27,6 +27,8 @@ Otherwise, the user should type the name of their new input file including the "
 
 The GUI generates a rectangular, triangulated mesh where the number of elements in the X- and Y- directions are user-specified in the lower right hand section of the GUI. The "X Max" and "Y Max" parameters refer to the upper right hand corner coordinates of the mesh.
 
+![meshgen](https://github.com/ENGN2912B/fem_b/blob/master/mesh_gen.png "Peacock")
+
 If the user wants to use a different 2D mesh (e.g., graded mesh, quadrilateral mesh, etc.), this can be uploaded using the "Mesh File Location" box. The file type for the mesh input file is ".e".
 
 In the "Simulation Parameters" section, the user enters the desired wall temperature on the bottom and top boundaries of the mesh. These values are only applied if the "Isothermal" radio buttons are selected. The inlet temperature is specified on the left boundary, and is required to be a Dirichlet (isothermal) boundary condition. If the user selects adiabatic boundary conditions on the radio buttons, the simulation will have zero flux across that boundary.
