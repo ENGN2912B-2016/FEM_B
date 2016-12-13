@@ -17,7 +17,9 @@ When that is done, the user can launch the GUI by running the "fem_b_gui" excuta
 
 ### INSERT GUI SCREENSHOT HERE
 
-# GUI
+## GUI
+
+## Running the Application
 
 The file structure for the essential files is as follows:
 
