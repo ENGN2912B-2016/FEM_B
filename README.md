@@ -19,8 +19,6 @@ When that is done, the user can launch the GUI by running the "fem_b_gui" excuta
 
 ## GUI
 
-# GUI
-
 In the GUI, the user may input the relevant parameters for their desired simulation. The simulation is designed to model convection-diffusion of gas in addition to heat conduction in two dimensions. In order to run the simulation, input parameters and a source function definition are required. These are collected in an input file with extension .i. The GUI generates the input file automatically when the user inputs valid parameter values and pushes the submit button. Below, we discuss the individual items involved in the GUI.
 
 The user may upload their own input file from the input file location box. This feature enables users to avoid entering parameter values in the GUI if they want to use the same input file they generated previously.
