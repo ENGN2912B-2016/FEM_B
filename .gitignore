@@ -1,5 +1,4 @@
 .libs
-*.la
 *.lo
 *.d
 *.o
@@ -12,7 +11,6 @@
 *.toc
 *.snm
 *.csv
-*.dylib
 *.so
 *.gitignore*
 *.vrb
