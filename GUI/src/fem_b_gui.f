@@ -19,7 +19,7 @@ decl {\#include <FL/fl_ask.H>} {private local
 
 Function {inblock(std::string name, int size, std::string ent[], std::string val[],std::ostream& out)} {
   comment {Function to print out input sub-block
-} open selected return_type {std::ostream&}
+} open return_type {std::ostream&}
 } {
   code {out << "[./" << name << "]\\n";
 if (size > 0) {
@@ -35,7 +35,7 @@ Function {make_window()} {open
 } {
   Fl_Window main_window {
     label {Input File Generator} open
-    xywh {1114 214 675 720} type Double visible
+    xywh {1138 307 675 720} type Double visible
   } {
     Fl_Group bc_set {
       label {Simulation Parameters} open
@@ -48,7 +48,7 @@ adia_button_t->value(0);
 } else {
 adia_button_t->value(1);
 }}
-        xywh {510 119 25 25} down_box ROUND_DOWN_BOX align 4 when 1
+        xywh {510 119 25 25} down_box ROUND_DOWN_BOX value 1 align 4 when 1
       }
       Fl_Round_Button adia_button_t {
         label {Adiabatic (top)}
@@ -66,7 +66,7 @@ adia_button_b->value(0);
 } else {
 adia_button_b->value(1);
 }}
-        xywh {510 156 25 25} down_box ROUND_DOWN_BOX align 4 when 1
+        xywh {510 156 25 25} down_box ROUND_DOWN_BOX value 1 align 4 when 1
       }
       Fl_Round_Button adia_button_b {
         label {Adiabatic (bottom)}
@@ -119,7 +119,7 @@ iso_button_b->value(1);
         xywh {510 356 130 25}
       }
       Fl_Input gas_sh {
-        label {Specific Heat}
+        label {Specific Heat} selected
         xywh {510 381 130 25}
       }
     }
@@ -164,15 +164,24 @@ std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str, xmax_s
 std::string input_str, mesh_str;
 bool adia_iso_t, adia_iso_b;
 
-if (bool(wall_temp_t->value())&&bool(wall_temp_b->value())) {
-if (std::stof(wall_temp_t->value())<0||std::stof(wall_temp_b->value()) < 0) {
-fl_alert("Temperature must be non-negative.");
-}}
 
-if (bool(x_elem->value())&&bool(y_elem->value())) {
-if (std::stof(x_elem->value()) <0 || std::stof(y_elem->value()) < 0) {
-fl_alert("Number of elements must be non-negative.");
-}}
+if (wall_temp_t->value()) {
+if (atof(wall_temp_t->value()) < 0) {
+fl_alert("Temperature must be non-negative.");
+}
+Twt_str = std::string(wall_temp_t->value());
+} else {
+Twt_str="300";
+}
+
+if (wall_temp_b->value()) {
+if (atof(wall_temp_b->value()) < 0) {
+fl_alert("Temperature must be non-negative.");
+}
+Twb_str = std::string(wall_temp_b->value());
+} else {
+Twb_str="300";
+}
 
 if (iso_button_t->value()) {
 adia_iso_t = false;
@@ -188,18 +197,6 @@ adia_iso_b = false;
 adia_iso_b = true;
 } else {
 adia_iso_b = false;
-}
-
-if (wall_temp_t->value()) {
-Twt_str = std::string(wall_temp_t->value());
-} else {
-Twt_str="300";
-}
-
-if (wall_temp_b->value()) {
-Twb_str = std::string(wall_temp_b->value());
-} else {
-Twb_str="300";
 }
 
 if (conv_x->value()) {
@@ -251,12 +248,18 @@ func_str = 1;
 }
 
 if (x_elem->value()) {
+if (atof(x_elem->value()) <0) {
+fl_alert("Number of elements must be non-negative.");
+}
 El_x_str = std::string( x_elem->value());
 } else {
 El_x_str = std::string("20");
 }
 
 if (y_elem->value()) {
+if (atof(y_elem->value()) < 0) {
+fl_alert("Number of elements must be non-negative.");
+}
 El_y_str = std::string( y_elem->value());
 } else {
 El_x_str = std::string("20");

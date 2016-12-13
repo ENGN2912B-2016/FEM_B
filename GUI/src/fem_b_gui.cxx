@@ -110,15 +110,24 @@ std::string RX_str, Hfuel_str, El_x_str, El_y_str, dur_str, timestep_str, xmax_s
 std::string input_str, mesh_str;
 bool adia_iso_t, adia_iso_b;
 
-if (bool(wall_temp_t->value())&&bool(wall_temp_b->value())) {
-if (std::stof(wall_temp_t->value())<0||std::stof(wall_temp_b->value()) < 0) {
-fl_alert("Temperature must be non-negative.");
-}}
 
-if (bool(x_elem->value())&&bool(y_elem->value())) {
-if (std::stof(x_elem->value()) <0 || std::stof(y_elem->value()) < 0) {
-fl_alert("Number of elements must be non-negative.");
-}}
+if (wall_temp_t->value()) {
+if (atof(wall_temp_t->value()) < 0) {
+fl_alert("Temperature must be non-negative.");
+}
+Twt_str = std::string(wall_temp_t->value());
+} else {
+Twt_str="300";
+}
+
+if (wall_temp_b->value()) {
+if (atof(wall_temp_b->value()) < 0) {
+fl_alert("Temperature must be non-negative.");
+}
+Twb_str = std::string(wall_temp_b->value());
+} else {
+Twb_str="300";
+}
 
 if (iso_button_t->value()) {
 adia_iso_t = false;
@@ -134,18 +143,6 @@ adia_iso_b = false;
 adia_iso_b = true;
 } else {
 adia_iso_b = false;
-}
-
-if (wall_temp_t->value()) {
-Twt_str = std::string(wall_temp_t->value());
-} else {
-Twt_str="300";
-}
-
-if (wall_temp_b->value()) {
-Twb_str = std::string(wall_temp_b->value());
-} else {
-Twb_str="300";
 }
 
 if (conv_x->value()) {
@@ -197,12 +194,18 @@ func_str = 1;
 }
 
 if (x_elem->value()) {
+if (atof(x_elem->value()) <0) {
+fl_alert("Number of elements must be non-negative.");
+}
 El_x_str = std::string( x_elem->value());
 } else {
 El_x_str = std::string("20");
 }
 
 if (y_elem->value()) {
+if (atof(y_elem->value()) < 0) {
+fl_alert("Number of elements must be non-negative.");
+}
 El_y_str = std::string( y_elem->value());
 } else {
 El_x_str = std::string("20");
@@ -369,6 +372,7 @@ Fl_Double_Window* make_window() {
     { bc_set = new Fl_Group(190, 30, 475, 475, "Simulation Parameters");
       { iso_button_t = new Fl_Round_Button(510, 119, 25, 25, "Isothermal (top");
         iso_button_t->down_box(FL_ROUND_DOWN_BOX);
+        iso_button_t->value(1);
         iso_button_t->callback((Fl_Callback*)cb_iso_button_t);
         iso_button_t->align(Fl_Align(FL_ALIGN_LEFT));
         iso_button_t->when(FL_WHEN_CHANGED);
@@ -380,6 +384,7 @@ Fl_Double_Window* make_window() {
       } // Fl_Round_Button* adia_button_t
       { iso_button_b = new Fl_Round_Button(510, 156, 25, 25, "Isothermal (Bottom)");
         iso_button_b->down_box(FL_ROUND_DOWN_BOX);
+        iso_button_b->value(1);
         iso_button_b->callback((Fl_Callback*)cb_iso_button_b);
         iso_button_b->align(Fl_Align(FL_ALIGN_LEFT));
         iso_button_b->when(FL_WHEN_CHANGED);
