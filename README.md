@@ -9,7 +9,7 @@ Anna Lischke, Matthew Petersen
 
 This application consists of a GUI (written in FLTK), a solver (made using the [MOOSE framework](http://www.mooseframework.com)), and a visualization capacity (via VTK). The application allows the user to model 2D fluid (gas) transport with thermal conductivity, using  simplified models based off of work done by [Michaelis and Rogg.](http://dx.doi.org/10.1016/j.jcp.2003.10.033). The user can easily take advantage of the world-class FEM capabilities of MOOSE, and quickly and easily generate input files without having to learn MOOSE input syntax. The output files are then able to viewed using [Paraview.](http://www.paraview.org)
 
-Unfortunately, due to ongoing technical issues, we have not been able to build the application on the CCV itself; the executable was compiled on one of our own machines. The example input file is `input_transport.i`.
+Unfortunately, due to ongoing technical issues, we have not been able to build the application on the CCV itself; the executable was compiled on one of our own machines. To build, we used a Mac with clang installed as the default compiler. Due to an issue with the CCV installation of MOOSE, we were unable to build with GCC on the CCV at all.
 
 To use the software application, the user must install the MOOSE framework and build it on their machine. Step-by-step instructions can be found on the [MOOSE Getting Started page](http://mooseframework.com/getting-started/). To build the GUI, the user must also have the FLTK GUI framework installed, which comes with [installation instructions](http://www.fltk.org/doc-1.3/intro.html). FLTK is installed on the CCV. Once that is done, the user should build the application on their machine, by running the `make_app.sh` bash script. 
 
