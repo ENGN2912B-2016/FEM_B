@@ -365,7 +365,7 @@ Fl_File_Browser *mesh_file=(Fl_File_Browser *)0;
 Fl_Input *new_file=(Fl_Input *)0;
 
 Fl_Double_Window* make_window() {
-  { main_window = new Fl_Double_Window(678, 749, "Input File Generator");
+  { main_window = new Fl_Double_Window(675, 720, "Input File Generator");
     { bc_set = new Fl_Group(190, 30, 475, 475, "Simulation Parameters");
       { iso_button_t = new Fl_Round_Button(510, 119, 25, 25, "Isothermal (top");
         iso_button_t->down_box(FL_ROUND_DOWN_BOX);
@@ -425,14 +425,14 @@ Fl_Double_Window* make_window() {
       } // Fl_Input* ymax
       mesh_set->end();
     } // Fl_Group* mesh_set
-    { time_set = new Fl_Group(185, 657, 475, 675, "Time Settings");
-      { duration = new Fl_Input(510, 666, 130, 25, "Number of Steps");
+    { time_set = new Fl_Group(185, 590, 475, 675, "Time Settings");
+      { duration = new Fl_Input(510, 599, 130, 25, "Number of Steps");
       } // Fl_Input* duration
-      { timestep = new Fl_Input(510, 691, 130, 25, "Timestep");
+      { timestep = new Fl_Input(510, 624, 130, 25, "Timestep");
       } // Fl_Input* timestep
       time_set->end();
     } // Fl_Group* time_set
-    { submit = new Fl_Button(230, 705, 100, 25, "Submit");
+    { submit = new Fl_Button(520, 680, 100, 25, "Submit");
       submit->callback((Fl_Callback*)cb_submit);
     } // Fl_Button* submit
     { in_file = new Fl_File_Browser(26, 105, 310, 235, "Input File Location");

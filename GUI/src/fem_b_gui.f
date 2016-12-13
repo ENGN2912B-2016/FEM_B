@@ -19,7 +19,7 @@ decl {\#include <FL/fl_ask.H>} {private local
 
 Function {inblock(std::string name, int size, std::string ent[], std::string val[],std::ostream& out)} {
   comment {Function to print out input sub-block
-} open return_type {std::ostream&}
+} open selected return_type {std::ostream&}
 } {
   code {out << "[./" << name << "]\\n";
 if (size > 0) {
@@ -35,7 +35,7 @@ Function {make_window()} {open
 } {
   Fl_Window main_window {
     label {Input File Generator} open
-    xywh {1097 327 678 749} type Double visible
+    xywh {1114 214 675 720} type Double visible
   } {
     Fl_Group bc_set {
       label {Simulation Parameters} open
@@ -146,15 +146,15 @@ iso_button_b->value(1);
     }
     Fl_Group time_set {
       label {Time Settings} open
-      xywh {185 657 475 675}
+      xywh {185 590 475 675}
     } {
       Fl_Input duration {
         label {Number of Steps}
-        xywh {510 666 130 25}
+        xywh {510 599 130 25}
       }
       Fl_Input timestep {
         label Timestep
-        xywh {510 691 130 25}
+        xywh {510 624 130 25}
       }
     }
     Fl_Button submit {
@@ -409,8 +409,8 @@ outfile << "num_steps = " << dur_str << "\\n";
 outfile << "dt = " << timestep_str << "\\n";
 outfile << "[]\\n\\n";
 
-outfile << "[Outputs]\\nexecute_on = 'timestep_end'\\nexodus = true\\n[]";} selected
-      xywh {230 705 100 25}
+outfile << "[Outputs]\\nexecute_on = 'timestep_end'\\nexodus = true\\n[]";}
+      xywh {520 680 100 25}
     }
     Fl_File_Browser in_file {
       label {Input File Location}
