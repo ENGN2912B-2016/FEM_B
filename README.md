@@ -15,7 +15,7 @@ To use the software application, the user must install the MOOSE framework and b
 
 When that is done, the user can launch the GUI by running the "fem_b_gui" excutable in the application directory. This will bring up an interactive interface for generating program input files.
 
-![fem_b GUI](https://github.com/ENGN2912B/fem_b/GUI_fem_b.png "GUI Used to generate input file")
+![fem_b GUI](https://github.com/ENGN2912B/fem_b/blob/master/GUI_fem_b.png "GUI Used to generate input file")
 
 # GUI
 
