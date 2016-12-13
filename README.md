@@ -23,8 +23,19 @@ When that is done, the user can launch the GUI by running the "fem_b_gui" excuta
 
 To run the application, the user uses the following syntax: `./coupled-opt -i MyInputFile.i`. The built-in MOOSE executioner will take the input file and follow its instructions to run the MOOSE solvers. The user can then use the MOOSE executioner (a GUI called Peacock) to view their results, or read the output data (stored in `peacock_run_tmp_out.e`) using an Exodus-format compatible data viewer, such as ParaView.
 
-In the GUI, the user may input the relevant parameters for their desired simulation. The simulation is designed to model convection-diffusion of gas in addition to heat conduction.
+In the GUI, the user may input the relevant parameters for their desired simulation. The simulation is designed to model convection-diffusion of gas in addition to heat conduction in two dimensions. In order to run the simulation, input parameters and a source function definition are required. These are collected in an input file with extension .i. The GUI generates the input file automatically when the user inputs valid parameter values and pushes the submit button. Below, we discuss the individual items involved in the GUI.
 
+The user may upload their own input file from the input file location box. This feature enables users to avoid entering parameter values in the GUI if they want to use the same input file they generated previously.
+
+Otherwise, the user should type the name of their new input file including the ".i" extension in the "New Input File Name" box.
+
+The GUI generates a rectangular, triangulated mesh with the number of X- and Y- elements user-specified in the lower right hand section of the GUI. The "X Max" and "Y Max" refer to the upper right hand corner coordinates of the mesh.
+
+If the user wants to use a different 2D mesh (e.g., graded mesh, quadrilateral mesh, etc.), this can be uploaded using the "Mesh File Location" box. The file type for the mesh input file is ".e".
+
+In the "Simulation Parameters" section, the user enters the desired wall temperature on the bottom and top boundaries of the mesh. These values are only applied if the "Isothermal" radio buttons are selected. The inlet temperature is specified on the left boundary, and is required to be a Dirichlet (isothermal) boundary condition. If the user selects adiabatic boundary conditions on the radio buttons, the simulation will have zero flux across that boundary.
+
+The forcing function corresponds to heat sinks and sources arising from chemical reactions. An example forcing function is "1+x" or "sin(pi*x)".
 The file structure for the essential files is as follows:
 
 ```
