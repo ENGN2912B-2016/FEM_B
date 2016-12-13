@@ -19,6 +19,8 @@ When that is done, the user can launch the GUI by running the "fem_b_gui" excuta
 
 # GUI
 
+In the GUI, the user may input the relevant parameters for their desired simulation. The simulation is designed to model convection-diffusion of gas in addition to heat conduction.
+
 The file structure for the essential files is as follows:
 
 ```
